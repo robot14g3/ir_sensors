@@ -24,7 +24,7 @@ public:
 
     void update(const ras_arduino_msgs::ADConverterConstPtr& msg) {
         average_1[index] += msg->ch1;
-        average_4[index] += msg->ch4;
+        average_4[index] += msg->ch3;
     }
 
     void calculateAverage() {
@@ -75,9 +75,9 @@ int main(int argc, char **argv) {
             cout << "Press key to start next set" << endl;
             cin.ignore();
             iter = 0;
-            ir.incrementIndex();
             ir.calculateAverage();
             ir.printAverage(file);
+            ir.incrementIndex();
         }
         iter++;
 
