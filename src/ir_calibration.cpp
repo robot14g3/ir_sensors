@@ -12,7 +12,7 @@ public:
     ros::Subscriber adc_sub;
     ros::NodeHandle nh;
 
-    IrCalibrator() : number(50) {
+    IrCalibrator() : number(100) {
         nh = ros::NodeHandle();
         adc_sub = nh.subscribe("/arduino/adc", 1, &IrCalibrator::update, this);
         memset(average_1, 0, sizeof(average_1));
@@ -62,22 +62,22 @@ int main(int argc, char **argv) {
 
     ros::Rate loop_rate(10);
 
-    int number = 50;
+    int number = 100;
     int iter = 0;
-    int numberOfTests = 3;
+    int numberOfTests = 26;
 
     ofstream file("ir_values_calibration.txt");
-    file << "Sensor 1:   Sensor 4:" << endl;
+    file << "Sensor 1:   Sensor 3:" << endl;
 
     while (ir.nh.ok()) {
         if (ir.getIndex() >= numberOfTests) break;
         if (iter >= number) {
-            cout << "Press key to start next set" << endl;
-            cin.ignore();
             iter = 0;
             ir.calculateAverage();
             ir.printAverage(file);
             ir.incrementIndex();
+            cout << "Press key to start next set" << endl;
+            cin.ignore();
         }
         iter++;
 
