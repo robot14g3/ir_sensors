@@ -23,19 +23,19 @@ public:
     ~IrCalibrator() {}
 
     void update(const ras_arduino_msgs::ADConverterConstPtr& msg) {
-        average_1[index] += msg->ch1;
-        average_4[index] += msg->ch3;
+        average_1[index] += msg->ch5;
+        //average_4[index] += msg->ch4;
     }
 
     void calculateAverage() {
         average_1[index] = average_1[index]/number;
-        average_4[index] = average_4[index]/number;
+        //average_4[index] = average_4[index]/number;
     }
 
     void printAverage(ofstream &file) {
-        cout << "Average sensor 1: " << average_1[index] << endl;
+        cout << "Average sensor 2: " << average_1[index] << endl;
         cout << "Average sensor 4: " << average_4[index] << endl;
-        file << average_1[index] << ", " << average_4[index] << endl;
+        file << average_1[index] << endl; //<< ", " << average_4[index] << endl;
      }
 
     void incrementIndex() {
@@ -47,8 +47,8 @@ public:
     }
 
 private:
-    int average_1[26];
-    int average_4[26];
+  int average_1[92]; //28 for short range
+    int average_4[92];
     int number;
     int index;
 
@@ -64,10 +64,10 @@ int main(int argc, char **argv) {
 
     int number = 100;
     int iter = 0;
-    int numberOfTests = 26;
+    int numberOfTests = 92;//28;
 
     ofstream file("ir_values_calibration.txt");
-    file << "Sensor 1:   Sensor 3:" << endl;
+    file << "Sensor front: " << endl;//  Sensor 4:" << endl;
 
     while (ir.nh.ok()) {
         if (ir.getIndex() >= numberOfTests) break;
