@@ -1,0 +1,12 @@
+<launch>
+	<!-- rosrun rosserial_python serial_node.py _port:=/dev/ttyACM0 -->
+	<!-- Run Python serial communication -->
+	<node pkg="rosserial_python" type="serial_node.py" name="serial_node" output="screen">
+	<param name="~port" value="/dev/ttyACM0"/>
+	</node>
+
+<!-- Run Ir Calibration -->
+	<node pkg="ir_sensors" type="ir_calibration" name="ir_calibration" output="screen" >
+</node>
+
+</launch>
