@@ -18,3 +18,6 @@ include_directories(include ${catkin_INCLUDE_DIRS})
 ## Declare a cpp executable
 add_executable(ir_calibration src/ir_calibration.cpp)
 target_link_libraries(ir_calibration ${catkin_LIBRARIES})
+
+add_executable(ir_sensors src/ir_sensors.cpp)
+target_link_libraries(ir_sensors ${catkin_LIBRARIES})

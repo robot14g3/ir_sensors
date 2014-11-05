@@ -1,4 +1,4 @@
-Sensor 2:   Sensor 4:
+Sensor 2:  Sensor 4:
 84, 95
 86, 98
 90, 100
