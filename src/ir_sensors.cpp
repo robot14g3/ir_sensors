@@ -26,7 +26,7 @@ public:
         sensor_cm[1] = 59.23 * exp(-0.01451*msg->ch2) + 16.28 * exp(-0.002646*msg->ch2);
 
         //Calculation for sensor 3, back left
-        sensor_cm[2] = 96.08 * exp(-0.01784*msg->ch2) + 16.27 * exp(-0.002609*msg->ch2); /*-0.2036 * pow(msg->ch3, 5) + 1.59 * pow(msg->ch3, 4) +
+        sensor_cm[2] = 96.08 * exp(-0.01784*msg->ch3) + 16.27 * exp(-0.002609*msg->ch3); /*-0.2036 * pow(msg->ch3, 5) + 1.59 * pow(msg->ch3, 4) +
                 -4.644 * pow(msg->ch3, 3) + 6.961 * pow(msg->ch3, 2) + -8.387 * pow(msg->ch3, 1)
                 + 12.43;*/
 
