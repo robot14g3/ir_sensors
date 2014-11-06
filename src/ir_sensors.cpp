@@ -1,5 +1,4 @@
 #include <ros/ros.h>
-#include <tf/transform_listener.h>
 #include <ras_arduino_msgs/ADConverter.h>
 #include <math.h>
 
@@ -35,6 +34,16 @@ public:
 
         //Calculation for sensor 5, front
         sensor_cm.ch5 = nearbyint(366.8 * exp(-0.02793*msg->ch5) + 58.15 * exp(-0.003915*msg->ch5));
+
+        /*Check if any of the sensor values are out of range. In range according to datasheet are
+        4-30 cm for sensors 1-4 and 10-80 cm for sensor 5.
+        */
+        if (sensor_cm.ch1 < 4 || sensor_cm.ch1 > 30) sensor_cm.ch1 = -1;
+        if (sensor_cm.ch2 < 4 || sensor_cm.ch1 > 30) sensor_cm.ch2 = -1;
+        if (sensor_cm.ch3 < 4 || sensor_cm.ch1 > 30) sensor_cm.ch3 = -1;
+        if (sensor_cm.ch4 < 4 || sensor_cm.ch1 > 30) sensor_cm.ch4 = -1;
+        if (sensor_cm.ch5 < 10 || sensor_cm.ch1 > 80) sensor_cm.ch5 = -1;
+
     }
 
     void publishValues() {
